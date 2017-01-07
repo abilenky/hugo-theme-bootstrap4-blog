@@ -14,6 +14,7 @@
     {{ if .RSSLink }}
     {{ "<!-- RSS 2.0 feed -->" | safeHTML }}
     <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
+    <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
     {{ end }}
 
     {{ template "_internal/google_analytics_async.html" . }}
@@ -29,8 +30,8 @@
 
     <div class="blog-masthead">
       <div class="container">
-        <nav class="nav blog-nav">
-          <a class="nav-link {{ if .IsHome }}active{{ end }}" href="{{ .Site.BaseURL | absLangURL }}">{{ i18n "home" }}</a>
+        <nav class="navbar blog-nav">
+          <a class="navbar-brand {{ if .IsHome }}active{{ end }}" href="{{ .Site.BaseURL | absLangURL }}">{{ if .Site.Params.navbarBrand }}{{ .Site.Params.navbarBrand }}{{ else }}{{ i18n "home" }}{{ end }}</a>
           {{ if .Site.Params.custom_navbar }}
           {{ range .Site.Menus.navbar }}
           <a class="nav-link" href="{{.URL | absURL }}">{{ .Name }}</a>
